@@ -1,0 +1,103 @@
+# PopModal 🪟
+
+**PopModal** es una pequeña librería de JavaScript puro (sin frameworks) para crear **ventanas modales reutilizables** en cualquier proyecto web.
+
+## 🧩 ¿Qué problema resuelve?
+
+Casi todos los proyectos web necesitan mostrar información emergente en algún momento: confirmaciones, alertas, formularios rápidos, detalles de un producto, etc. Escribir un modal desde cero cada vez implica repetir HTML, CSS y lógica de apertura/cierre.
+
+**PopModal** resuelve esto ofreciendo una sola clase de JavaScript (`PopModal`) que:
+
+- Genera el HTML y los estilos del modal automáticamente.
+- Se puede llamar cuantas veces se necesite, con **título, contenido y botones distintos** cada vez.
+- Maneja por sí sola la apertura, el cierre (botón ✕, clic fuera, tecla `Esc`) y las animaciones.
+- No requiere ninguna librería externa ni framework.
+
+---
+
+## 📦 Instalación
+
+Copia las carpetas `css/` y `js/` de este repositorio dentro de tu proyecto y enlázalas en tu HTML:
+
+```html
+<head>
+  <link rel="stylesheet" href="css/componente.css" />
+</head>
+<body>
+  ...
+  <script src="js/componente.js"></script>
+</body>
+```
+
+No requiere `npm install` ni build tools — es JavaScript vanilla listo para usarse.
+
+---
+
+## 🚀 Uso
+
+### 1. Modal simple
+
+```html
+<button id="btnSimple">Abrir modal</button>
+
+<script>
+  document.getElementById("btnSimple").addEventListener("click", () => {
+    const modal = new PopModal({
+      title: "Bienvenido",
+      content: "<p>Este es un modal creado con <strong>PopModal.js</strong>.</p>",
+    });
+    modal.open();
+  });
+</script>
+```
+
+### 2. Modal con botones de acción
+
+```html
+<script>
+  const modal = new PopModal({
+    title: "¿Eliminar elemento?",
+    content: "<p>Esta acción no se puede deshacer.</p>",
+    buttons: [
+      { text: "Cancelar", type: "secondary", onClick: (m) => m.close() },
+      {
+        text: "Sí, eliminar",
+        type: "primary",
+        onClick: (m) => m.setContent("<p>✅ Elemento eliminado.</p>"),
+      },
+    ],
+  });
+  modal.open();
+</script>
+```
+
+### 3. Modal con contenido dinámico y ancho personalizado
+
+<script>
+  const modal = new PopModal({
+    title: "Producto: Mochila Explorer",
+    maxWidth: "560px",
+    content: `
+      <p>Mochila resistente al agua, 30L.</p>
+      <ul>
+        <li>Material: Nylon ripstop</li>
+        <li>Precio: $890 MXN</li>
+      </ul>
+    `,
+    buttons: [{ text: "Cerrar", type: "secondary", onClick: (m) => m.close() }],
+  });
+  modal.open();
+</script>
+```
+
+
+## 🎬 Video 
+
+https://youtu.be/cIVv5Rj33Yg
+
+
+
+
+## 👤 Autor
+
+velasco martinez zeferino— Instituto Tecnológico de Oaxaca

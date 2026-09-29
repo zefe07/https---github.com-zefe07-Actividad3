@@ -1,0 +1,151 @@
+
+
+:root {
+  --popmodal-overlay-bg: rgba(15, 23, 42, 0.55);
+  --popmodal-bg: #ffffff;
+  --popmodal-radius: 14px;
+  --popmodal-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  --popmodal-accent: #6366f1;
+  --popmodal-accent-dark: #4338ca;
+  --popmodal-text: #1e293b;
+  --popmodal-muted: #64748b;
+}
+
+.popmodal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--popmodal-overlay-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 9999;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.popmodal-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popmodal-box {
+  background: var(--popmodal-bg);
+  border-radius: var(--popmodal-radius);
+  box-shadow: var(--popmodal-shadow);
+  width: 100%;
+  max-width: var(--popmodal-max-width, 480px);
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: translateY(24px) scale(0.96);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--popmodal-text);
+}
+
+.popmodal-overlay.is-open .popmodal-box {
+  transform: translateY(0) scale(1);
+}
+
+
+.popmodal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.popmodal-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.popmodal-close {
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--popmodal-muted);
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.popmodal-close:hover {
+  background: #f1f5f9;
+  color: var(--popmodal-text);
+}
+
+/* Cuerpo */
+.popmodal-body {
+  padding: 20px 22px;
+  font-size: 0.97rem;
+  line-height: 1.55;
+  color: var(--popmodal-text);
+}
+
+.popmodal-body img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.popmodal-footer {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  padding: 16px 22px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.popmodal-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 9px 18px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.15s ease;
+}
+
+.popmodal-btn:active {
+  transform: scale(0.97);
+}
+
+.popmodal-btn--primary {
+  background: var(--popmodal-accent);
+  color: #fff;
+}
+
+.popmodal-btn--primary:hover {
+  background: var(--popmodal-accent-dark);
+}
+
+.popmodal-btn--secondary {
+  background: #e2e8f0;
+  color: var(--popmodal-text);
+}
+
+.popmodal-btn--secondary:hover {
+  background: #cbd5e1;
+}
+
+.demo-trigger {
+  background: var(--popmodal-accent);
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 6px;
+}
+
+.demo-trigger:hover {
+  background: var(--popmodal-accent-dark);
+}

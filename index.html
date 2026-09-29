@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PopModal — Demo</title>
+  <link rel="stylesheet" href="css/componente.css" />
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      max-width: 720px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    h1 { margin-bottom: 4px; }
+    p.lead { color: #64748b; margin-top: 0; }
+    section {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>PopModal</h1>
+  <p class="lead">Componente visual de ventanas modales reutilizables — demo en vivo.</p>
+
+  <section>
+    <h2>1. Modal simple</h2>
+    <button class="demo-trigger" id="btnSimple">Abrir modal simple</button>
+  </section>
+
+  <section>
+    <h2>2. Modal con botones de acción</h2>
+    <button class="demo-trigger" id="btnConfirm">Eliminar elemento</button>
+  </section>
+
+  <section>
+    <h2>3. Modal con contenido dinámico (HTML/imagen)</h2>
+    <button class="demo-trigger" id="btnGallery">Ver detalles del producto</button>
+  </section>
+
+  <script src="js/componente.js"></script>
+  <script>
+    document.getElementById("btnSimple").addEventListener("click", () => {
+      const modal = new PopModal({
+        title: "Bienvenido",
+        content: "<p>Este es un modal creado con <strong>PopModal.js</strong>, sin frameworks, listo para usarse en cualquier proyecto HTML.</p>",
+      });
+      modal.open();
+    });
+
+    document.getElementById("btnConfirm").addEventListener("click", () => {
+      const modal = new PopModal({
+        title: "¿Eliminar elemento?",
+        content: "<p>Esta acción no se puede deshacer. ¿Deseas continuar?</p>",
+        buttons: [
+          {
+            text: "Cancelar",
+            type: "secondary",
+            onClick: (m) => m.close(),
+          },
+          {
+            text: "Sí, eliminar",
+            type: "primary",
+            onClick: (m) => {
+              m.setContent("<p>✅ Elemento eliminado correctamente.</p>");
+            },
+          },
+        ],
+      });
+      modal.open();
+    });
+
+    document.getElementById("btnGallery").addEventListener("click", () => {
+      const modal = new PopModal({
+        title: "Producto: Mochila Explorer",
+        maxWidth: "560px",
+        content: `
+          <p>Mochila resistente al agua, 30L, ideal para viajes cortos.</p>
+          <ul>
+            <li>Material: Nylon ripstop</li>
+            <li>Peso: 850g</li>
+            <li>Precio: $890 MXN</li>
+          </ul>
+        `,
+        buttons: [
+          { text: "Cerrar", type: "secondary", onClick: (m) => m.close() },
+        ],
+      });
+      modal.open();
+    });
+  </script>
+
+</body>
+</html>
